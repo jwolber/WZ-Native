@@ -47,7 +47,7 @@ const Section: React.FC<
   );
 };
 
-const Help = () => {
+export const HelpScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -103,5 +103,3 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
-
-export default Help;
