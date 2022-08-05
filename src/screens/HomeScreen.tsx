@@ -1,43 +1,42 @@
-import React, {useCallback, useEffect} from 'react';
-import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback} from 'react';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import useSWR from 'swr';
 import {getMatches} from '../api/stats';
-import {MatchStat} from '../components/MatchStat';
+import {StatChart} from '../components/StatChart';
 import config from '../config';
 import {useRootStackNavigation} from '../navigation/RootStack';
 import {Match} from '../types';
 import {cleanGameMode} from '../utils';
+import {globalStyle} from '../styles/global';
+import theme from '../theme';
+import {MatchSummary} from '../components/MatchSummary';
 
 const useMatches = (gamerTag: string) =>
   useSWR(gamerTag ? gamerTag : null, getMatches);
 
-type ListMatchProps = {};
-
-const ListMatches = () => {
+export const HomeScreen = () => {
   const {data: matches} = useMatches(config.GAMER_TAG);
   const navigation = useRootStackNavigation();
   const renderItem = useCallback(
     ({item}: {item: Match}) => {
       return (
-        <View style={styles.matchContainer}>
+        <TouchableOpacity
+          style={styles.matchContainer}
+          onPress={() => {
+            navigation.navigate('Match', {
+              id: item.matchID,
+              gamerTag: config.GAMER_TAG,
+            });
+          }}
+          accessibilityRole="button">
           <View style={styles.matchHeader}>
             <Text style={styles.matchTitle}>{cleanGameMode(item.mode)}</Text>
             <Text style={styles.smallText}>
               {new Date(item.utcStartSeconds * 1000).toLocaleDateString()}
             </Text>
           </View>
-          <View style={styles.summary}>
-            <View style={styles.placement}><Text style={styles.placementText}>{item.playerStats.teamPlacement}</Text></View>
-            <MatchStat title="Kills" stat={item.playerStats.kills} />
-            <MatchStat title="Deaths" stat={item.playerStats.deaths} />
-            <MatchStat title="KDR" stat={item.playerStats.kdRatio.toFixed(2)} />
-            <MatchStat
-              title="Gulag"
-              stat={item.playerStats.gulagKills}
-              isBool={true}
-            />
-          </View>
-        </View>
+          <MatchSummary playerStats={item.playerStats} />
+        </TouchableOpacity>
       );
     },
     [navigation],
@@ -48,22 +47,34 @@ const ListMatches = () => {
   }
 
   return (
-    <FlatList
-      data={matches.data.matches}
-      renderItem={renderItem}
-      style={{backgroundColor: '#5081A0'}}
-    />
+    <View style={globalStyle.container}>
+      <FlatList
+        ListHeaderComponent={
+          <>
+            <StatChart
+              title="Kills / Game"
+              data={matches.data.matches
+                .map(match => match.playerStats.kills)
+                .reverse()}
+            />
+            <Text style={globalStyle.header}>Last 20 Games</Text>
+          </>
+        }
+        data={matches.data.matches}
+        renderItem={renderItem}
+        style={styles.matchList}
+      />
+    </View>
   );
 };
 
-export const HomeScreen = () => {
-  return <ListMatches />;
-};
-
 const styles = StyleSheet.create({
+  matchList: {
+    marginBottom: 20,
+  },
   matchContainer: {
     flex: 1,
-    backgroundColor: '#192530',
+    backgroundColor: theme.colors.darkGrey,
     padding: 10,
     marginHorizontal: 10,
     marginTop: 10,
@@ -84,20 +95,4 @@ const styles = StyleSheet.create({
     color: 'white',
     marginLeft: 'auto',
   },
-  summary: {
-    flexDirection: 'row',
-    marginVertical:10
-  },
-  placement: {
-    backgroundColor:'#465562',
-    borderRadius:5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex:1
-  },
-  placementText: {
-    fontSize:20,
-    fontWeight: '700',
-    color:'white',
-  }
 });
