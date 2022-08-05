@@ -18,7 +18,11 @@ export const MatchSummary = ({playerStats}: MatchSummaryProps) => {
       <MatchStat title={strings.kills} stat={playerStats.kills} />
       <MatchStat title={strings.deaths} stat={playerStats.deaths} />
       <MatchStat title={strings.kdr} stat={playerStats.kdRatio.toFixed(2)} />
-      <MatchStat title={strings.gulag} stat={playerStats.gulagKills} isBool={true} />
+      <MatchStat
+        title={strings.gulag}
+        stat={playerStats.gulagKills}
+        isBool={true}
+      />
     </View>
   );
 };
