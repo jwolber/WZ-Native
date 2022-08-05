@@ -5,9 +5,10 @@ import {LoadoutItem} from '../components/LoadoutItem';
 import {MatchSummary} from '../components/MatchSummary';
 import {useMatchRoute} from '../navigation/RootStack';
 import {globalStyle} from '../styles/global';
-import theme from '../theme';
+import theme from '../res/theme';
 import {Match} from '../types';
 import {cleanEquip, cleanGameMode, cleanPerk, cleanWeapon} from '../utils';
+import strings from '../res/strings';
 
 const useCachedMatch = () => {
   const {params} = useMatchRoute();
@@ -33,12 +34,12 @@ export const MatchScreen = () => {
         </Text>
       </Text>
       <View style={styles.summaryContainer}>
-        <Text style={styles.subTitle}>Summary</Text>
+        <Text style={styles.subTitle}>{strings.summary}</Text>
         <MatchSummary playerStats={match.playerStats} />
       </View>
       {loadout && (
         <View style={styles.loadoutContainer}>
-          <Text style={styles.subTitle}>Loadout</Text>
+          <Text style={styles.subTitle}>{strings.loadout}</Text>
           {/* PERKS */}
           <View style={styles.perkContainer}>
             {loadout.perks.map(perk => (

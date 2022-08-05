@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import theme from '../theme';
+import theme from '../res/theme';
 
 type LoadoutItemProps = {
   title: string;

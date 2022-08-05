@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import theme from '../theme';
+import strings from '../res/strings';
+import theme from '../res/theme';
 import {PlayerStats} from '../types';
 import {MatchStat} from './MatchStat';
 
@@ -14,10 +15,10 @@ export const MatchSummary = ({playerStats}: MatchSummaryProps) => {
       <View style={styles.placement}>
         <Text style={styles.placementText}>{playerStats.teamPlacement}</Text>
       </View>
-      <MatchStat title="Kills" stat={playerStats.kills} />
-      <MatchStat title="Deaths" stat={playerStats.deaths} />
-      <MatchStat title="KDR" stat={playerStats.kdRatio.toFixed(2)} />
-      <MatchStat title="Gulag" stat={playerStats.gulagKills} isBool={true} />
+      <MatchStat title={strings.kills} stat={playerStats.kills} />
+      <MatchStat title={strings.deaths} stat={playerStats.deaths} />
+      <MatchStat title={strings.kdr} stat={playerStats.kdRatio.toFixed(2)} />
+      <MatchStat title={strings.gulag} stat={playerStats.gulagKills} isBool={true} />
     </View>
   );
 };

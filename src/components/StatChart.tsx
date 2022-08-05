@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Grid, LineChart, YAxis} from 'react-native-svg-charts';
-import theme from '../theme';
+import theme from '../res/theme';
 
 type StatChartProps = {
   data: Array<number>;

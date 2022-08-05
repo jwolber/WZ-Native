@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {faCheckCircle} from '@fortawesome/free-solid-svg-icons/faCheckCircle';
 import {faCircleXmark} from '@fortawesome/free-solid-svg-icons/faCircleXmark';
-import theme from '../theme';
+import theme from '../res/theme';
 
 type MatchStatProps = {
   title: string;

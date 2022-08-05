@@ -8,8 +8,9 @@ import {useRootStackNavigation} from '../navigation/RootStack';
 import {Match} from '../types';
 import {cleanGameMode} from '../utils';
 import {globalStyle} from '../styles/global';
-import theme from '../theme';
+import theme from '../res/theme';
 import {MatchSummary} from '../components/MatchSummary';
+import strings from '../res/strings';
 
 const useMatches = (gamerTag: string) =>
   useSWR(gamerTag ? gamerTag : null, getMatches);
@@ -52,13 +53,13 @@ export const HomeScreen = () => {
         ListHeaderComponent={
           <>
             <StatChart
-              title="Kills / Game"
+              title={strings.killChart}
               color={theme.colors.textColor}
               data={matches.data.matches
                 .map(match => match.playerStats.kills)
                 .reverse()}
             />
-            <Text style={globalStyle.header}>Last 20 Games</Text>
+            <Text style={globalStyle.header}>{strings.lastGames}</Text>
           </>
         }
         data={matches.data.matches}
