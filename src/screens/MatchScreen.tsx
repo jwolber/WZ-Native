@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     textAlign: 'center',
-    color: 'white',
+    color: theme.colors.textColor,
     textTransform: 'uppercase',
     letterSpacing: 3,
     fontWeight: 'bold',

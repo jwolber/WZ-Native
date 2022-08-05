@@ -9,7 +9,7 @@ export const globalStyle = StyleSheet.create({
   header: {
     textAlign: 'center',
     backgroundColor: theme.colors.offBlack,
-    color: 'white',
+    color: theme.colors.textColor,
     fontWeight: '900',
     fontSize: 20,
     textTransform: 'uppercase',

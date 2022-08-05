@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
   placementText: {
     fontSize: 20,
     fontWeight: '700',
-    color: 'white',
+    color: theme.colors.textColor,
   },
 });

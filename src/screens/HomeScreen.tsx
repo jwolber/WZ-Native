@@ -53,6 +53,7 @@ export const HomeScreen = () => {
           <>
             <StatChart
               title="Kills / Game"
+              color={theme.colors.textColor}
               data={matches.data.matches
                 .map(match => match.playerStats.kills)
                 .reverse()}
@@ -87,12 +88,12 @@ const styles = StyleSheet.create({
   matchTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white',
+    color: theme.colors.textColor,
   },
   smallText: {
     fontSize: 12,
     paddingLeft: 5,
-    color: 'white',
+    color: theme.colors.textColor,
     marginLeft: 'auto',
   },
 });

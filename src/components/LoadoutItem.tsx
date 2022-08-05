@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: 'white',
+    color: theme.colors.textColor,
     textAlign: 'center',
     padding: 10,
   },
