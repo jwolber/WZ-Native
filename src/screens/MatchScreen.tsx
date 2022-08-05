@@ -23,7 +23,6 @@ const useCachedMatch = () => {
 export const MatchScreen = () => {
   const match: Match = useCachedMatch();
   const loadout = match.player.loadout[0];
-  console.log(loadout);
   return (
     <View style={globalStyle.container}>
       <Text style={globalStyle.header}>
@@ -51,7 +50,7 @@ export const MatchScreen = () => {
             <LoadoutItem title={cleanWeapon(loadout.primaryWeapon.name)} />
             <LoadoutItem title={cleanWeapon(loadout.secondaryWeapon.name)} />
           </View>
-          {/* TACTICALS */}
+          {/* EQUIPMENT */}
           <View style={styles.perkContainer}>
             <LoadoutItem title={cleanEquip(loadout.lethal.name)} />
             <LoadoutItem title={cleanEquip(loadout.tactical.name)} />
