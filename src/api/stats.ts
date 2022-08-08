@@ -3,7 +3,7 @@ import {MatchResult} from '../types';
 
 export const getMatches = (gamerTag: string): Promise<MatchResult> =>
   fetch(
-    `https://my.callofduty.com/api/papi-client/crm/cod/v2/title/mw/platform/uno/gamer/${encodeURIComponent(
+    `https://callofduty.com/api/papi-client/crm/cod/v2/title/mw/platform/uno/gamer/${encodeURIComponent(
       gamerTag,
     )}/matches/wz/start/0/end/0/details`,
     {

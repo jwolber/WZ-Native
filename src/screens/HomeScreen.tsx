@@ -55,9 +55,9 @@ export const HomeScreen = () => {
             <StatChart
               title={strings.killChart}
               color={theme.colors.textColor}
-              data={matches.data.matches
-                .map(match => match.playerStats.kills)
-                .reverse()}
+              data={matches.data?.matches
+                ?.map(match => match.playerStats.kills)
+                .reverse() ?? []}
             />
             <Text style={globalStyle.header}>{strings.lastGames}</Text>
           </>
