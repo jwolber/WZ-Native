@@ -41,8 +41,8 @@ export const MatchScreen = () => {
           <Text style={styles.subTitle}>{strings.loadout}</Text>
           {/* PERKS */}
           <View style={styles.perkContainer}>
-            {loadout.perks.map(perk => (
-              <LoadoutItem title={cleanPerk(perk.name)} />
+            {loadout.perks.map((perk, index) => (
+              <LoadoutItem title={cleanPerk(perk.name)} key={index} />
             ))}
           </View>
           {/* WEAPONS */}

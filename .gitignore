@@ -64,3 +64,6 @@ buck-out/
 
 # Environment Variables
 .env
+
+# Jest
+.jest/

@@ -17,12 +17,14 @@ const useMatches = (gamerTag: string) =>
 
 export const HomeScreen = () => {
   const {data: matches} = useMatches(config.GAMER_TAG);
+
   const navigation = useRootStackNavigation();
   const renderItem = useCallback(
     ({item}: {item: Match}) => {
       return (
         <TouchableOpacity
           style={styles.matchContainer}
+          key={item.matchID}
           onPress={() => {
             navigation.navigate('Match', {
               id: item.matchID,
